@@ -7,7 +7,9 @@ namespace ManejoPresupuestov6.Servicios
     public interface IRepositorioTiposCuentas
     {
         Task Crear(TipoCuenta tc);
+        Task Existe(TipoCuenta tipoCuenta);
     }
+
 
     //RepositorioTiposCuentas IMPLEMENTA DE RepositorioTiposCuentas
     public class RepositorioTiposCuentas : IRepositorioTiposCuentas

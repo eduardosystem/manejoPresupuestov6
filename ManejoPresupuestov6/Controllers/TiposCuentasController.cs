@@ -27,11 +27,19 @@ namespace ManejoPresupuestov6.Controllers
                 return View(tipoCuenta);
             }
             tipoCuenta.UsuarioId = 1;
-            var yaExiste = await repositorioTiposCuentas.
+
+            var yaExiste = await repositorioTiposCuentas.Existe(tipoCuenta.Nombre, tipoCuenta.UsuarioId);
+
+            if (yaExiste) {
+                ModelState.AddModelError(nameof(tipoCuenta.Nombre),
+                    $"El Nombre {tipoCuenta.Nombre} ya existe");
+                return View(tipoCuenta);
+            }
 
             await repositorioTiposCuentas.Crear(tipoCuenta);
 
             return View();
+            
         }
 
        
